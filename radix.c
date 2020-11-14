@@ -23,8 +23,9 @@ void generate_vetor(int tamanho, char metodo[], int *vetor) {
   }
 
   if(strcmp("Decrescente", metodo) == 0) {
-    for (size_t i = 0; i < tamanho; i++)
-      vetor[i] = -i;
+    int aux = 0;
+    for (size_t i = tamanho-1; i > 0; i--)
+      vetor[aux++] = i;
   }
 }
 
@@ -34,45 +35,56 @@ void imprime_vetor(int vetor[], int tamanho){
   } printf("\n");
 }
 
-void busca_max(int vetor[], int tamanho) {
-
+int busca_max(int vetor[], int tamanho) {
+  int max = 0;
+  for (size_t i = 0; i < tamanho; i++) {
+    if (max < vetor[i]) {
+      max = vetor[i];
+    }
+  }
+  return max;
 }
 
-void radix_sort(vetor[], tamanho) {
-	int max = busca_max(vetor, tamanho);
-	for (size_t i = 0; max/i > 0; i *= 10) {
-		counting_sort(vetor, i, tamanho);
-	}
+void counting_sort(int vetor[], int d, int tamanho) {
+  int aux[tamanho];
+  int contagem[10] = {0,0,0,0,0,0,0,0,0,0};
+  int posicao[10] = {0,0,0,0,0,0,0,0,0,0};
+  int digito = 0;
+
+  // copia vetor para aux
+  for (size_t i = 0; i < tamanho; i++) {
+    aux[i] = vetor[i];
+  }
+
+  // conta as ocorrencias dos digitos
+  for (size_t i = 0; i < tamanho; i++) {
+    digito = (vetor[i] / d) % 10;
+    contagem[digito]++;
+  }
+
+  // controla a posicao onde o valor vai ser colocado
+  for (size_t i = 1; i < 10; i++) {
+    posicao[i] = contagem[i-1] + posicao[i-1];
+  }
+
+  // constroi o vetor de saida
+  for (size_t i = 0; i < tamanho; i++) {
+    digito = (vetor[i] / d) % 10;
+    aux[posicao[digito]] = vetor[i];
+    posicao[digito]++;
+  }
+
+  // passa os valores de aux para o vetor original
+  for (size_t i = 0; i < tamanho; i++) {
+    vetor[i] = aux[i];
+  }
 }
 
-int counting_sort(int vetor[], int tamanho) {
-//encontra o maior valor em v[]
-	int maior = v[0];
-	for (int i = 1; i < v.length; i++) {
-		if (v[i] > maior) {
-			maior = v[i];
-		}
-	}
-
-//conta quantas vezes cada valor de v[] aparece
-	int[] c = new int[maior+1];//+1 pois se 10 for o maior valor, ele iria apenas de 0 a 9
-	for (int i = 0; i < v.length; i++) {
-		c[v[i]] += 1;
-	}
-
-//acumula as vezes de cada elemento de v[] com os elementos anteriores a este
-	for (int i = 1; i < c.length; i++) {
-		c[i] += c[i-1];
-	}
-
-//adiciona os elementos em suas posições conforme o acumulo de suas frequencias
-	Integer[] b = new Integer[v.length];
-	for (int i = b.length-1; i >= 0; i--) {//percorre do fim para o inicio para manter estavel, mas não haveria problema em i = 0; i < b.lenght; i++
-		b[c[v[i]] -1] = v[i];
-		c[v[i]]--;
-	}
-
-	return b;
+void radix_sort(int vetor[], int tamanho) {
+  int max = busca_max(vetor, tamanho);
+  for (size_t i = 1; max/i > 0; i*=10) {
+    counting_sort(vetor, i, tamanho);
+  }
 }
 
 int main() {
@@ -87,12 +99,11 @@ int main() {
   generate_vetor(tamanho, metodo, &vetor[0]);
   startTime = clock();
   imprime_vetor(vetor, tamanho);
-	radixsort(vetor, tamanho);
+	radix_sort(vetor, tamanho);
   imprime_vetor(vetor, tamanho);
   endTime = clock();
 
   deltaTime = (double)(endTime - startTime) / CLOCKS_PER_SEC;
-  // printf("Itens=%06d \tMetodo=%s\n", tamanho, metodo);
-  printf("Itens=%06d \tMetodo=%s \t%fs \t%fms\n", tamanho, metodo, deltaTime, deltaTime*1000);
+  // printf("Itens=%06d \tMetodo=%s \t%fs \t%fms\n", tamanho, metodo, deltaTime, deltaTime*1000);
   return 0;
 }
