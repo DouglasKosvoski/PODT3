@@ -1,0 +1,32 @@
+// Crescente
+Itens=010000 	Metodo=Crescente 	0.002939s 	2.939000ms
+Itens=010000 	Metodo=Crescente 	0.003407s 	3.407000ms
+Itens=010000 	Metodo=Crescente 	0.001118s 	1.118000ms
+Itens=050000 	Metodo=Crescente 	0.014788s 	14.788000ms
+Itens=050000 	Metodo=Crescente 	0.017485s 	17.485000ms
+Itens=050000 	Metodo=Crescente 	0.013946s 	13.946000ms
+Itens=100000 	Metodo=Crescente 	0.028432s 	28.432000ms
+Itens=100000 	Metodo=Crescente 	0.039653s 	39.653000ms
+Itens=100000 	Metodo=Crescente 	0.035877s 	35.877000ms
+
+// Decrescente
+Itens=010000 	Metodo=Decrescente 	0.003093s 	3.093000ms
+Itens=010000 	Metodo=Decrescente 	0.001351s 	1.351000ms
+Itens=010000 	Metodo=Decrescente 	0.002933s 	2.933000ms
+Itens=050000 	Metodo=Decrescente 	0.009157s 	9.157000ms
+Itens=050000 	Metodo=Decrescente 	0.023022s 	23.022000ms
+Itens=050000 	Metodo=Decrescente 	0.020911s 	20.911000ms
+Itens=100000 	Metodo=Decrescente 	0.049144s 	49.144000ms
+Itens=100000 	Metodo=Decrescente 	0.032627s 	32.627000ms
+Itens=100000 	Metodo=Decrescente 	0.036209s 	36.209000ms
+
+// Aleatorio
+Itens=010000 	Metodo=Aleatorio 	0.000321s 	0.321000ms
+Itens=010000 	Metodo=Aleatorio 	0.000592s 	0.592000ms
+Itens=010000 	Metodo=Aleatorio 	0.000522s 	0.522000ms
+Itens=050000 	Metodo=Aleatorio 	0.002456s 	2.456000ms
+Itens=050000 	Metodo=Aleatorio 	0.002616s 	2.616000ms
+Itens=050000 	Metodo=Aleatorio 	0.004295s 	4.295000ms
+Itens=100000 	Metodo=Aleatorio 	0.011425s 	11.425000ms
+Itens=100000 	Metodo=Aleatorio 	0.012131s 	12.131000ms
+Itens=100000 	Metodo=Aleatorio 	0.007738s 	7.738000ms

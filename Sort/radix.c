@@ -46,9 +46,9 @@ int busca_max(int vetor[], int tamanho) {
 }
 
 void counting_sort(int vetor[], int d, int tamanho) {
-  int aux[tamanho];
   int contagem[10] = {0,0,0,0,0,0,0,0,0,0};
   int posicao[10] = {0,0,0,0,0,0,0,0,0,0};
+  int aux[tamanho];
   int digito = 0;
 
   // copia vetor para aux
@@ -87,23 +87,23 @@ void radix_sort(int vetor[], int tamanho) {
   }
 }
 
-int main() {
+int main(int argc, char const *argv[]) {
   clock_t startTime, endTime;
   double deltaTime;
 
   // Aleatorio, Crescente or Decrescente
-  char metodo[] = "Decrescente";
-  int tamanho = 10;
+  char metodo[] = "Aleatorio";
+  int tamanho = 100000;
   int vetor[tamanho];
 
   generate_vetor(tamanho, metodo, &vetor[0]);
   startTime = clock();
-  imprime_vetor(vetor, tamanho);
+  // imprime_vetor(vetor, tamanho);
 	radix_sort(vetor, tamanho);
-  imprime_vetor(vetor, tamanho);
+  // imprime_vetor(vetor, tamanho);
   endTime = clock();
 
   deltaTime = (double)(endTime - startTime) / CLOCKS_PER_SEC;
-  // printf("Itens=%06d \tMetodo=%s \t%fs \t%fms\n", tamanho, metodo, deltaTime, deltaTime*1000);
+  printf("Itens=%06d \tMetodo=%s \t%fs \t%fms\n", tamanho, metodo, deltaTime, deltaTime*1000);
   return 0;
 }
